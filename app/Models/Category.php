@@ -1,10 +1,10 @@
 <?php
 
-namespace CodeShopping;
+namespace CodeShopping\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModelsCategory extends Model
+class Category extends Model
 {
     //
 }
