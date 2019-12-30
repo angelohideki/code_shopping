@@ -26,9 +26,14 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->fill($request->all());
+        $category->save();
+
+        //return $category;
+
+        return response([],  204);
     }
 
     public function destroy(Category $category)
