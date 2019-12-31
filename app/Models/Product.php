@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use Sluggable;
-    protected $fillable = ['name','active'];
+    protected $fillable = ['name','price','description','active'];
 
     public function sluggable(): array
     {
