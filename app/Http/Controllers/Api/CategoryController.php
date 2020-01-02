@@ -33,13 +33,13 @@ class CategoryController extends Controller
 
         //return $category;
 
-        return response([],204);
+        return response()->json([],204);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return response([],204);
+        return response()->json([],204);
     }
 }

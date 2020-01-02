@@ -33,13 +33,13 @@ class ProductController extends Controller
         $product->fill($request->all());
         $product->save();
 
-        return response([], 204);
+        return response()->json([], 204);
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
 
-        return response([], 204);
+        return response()->json([], 204);
     }
 }
