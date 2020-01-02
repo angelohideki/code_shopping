@@ -20,9 +20,9 @@ class ProductInputController extends Controller
         //
     }
 
-    public function show(ProductInput $productInput)
+    public function show(ProductInput $input)
     {
-        //
+        return new ProductInputResource($input);
     }
 
 }
