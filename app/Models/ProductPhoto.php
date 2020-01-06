@@ -38,6 +38,30 @@ class ProductPhoto extends Model
 
     }
 
+    public function updateWithPhoto(UploadedFile $file): ProductPhoto
+    {
+        try {
+            self::uploadFiles($this->product_id, [$file]);
+            \DB::beginTransaction();
+            $this->deletePhoto($this->file_name);
+            $this->file_name = $file->hashName();
+            $this->save();
+            \DB::commit();
+            return $this;
+        }catch (\Exception $e){
+            self::deleteFiles($this->product_id, [$file]);
+            \DB::rollBack();
+            throw $e;
+        }
+
+    }
+
+    private function deletePhoto($fileName)
+    {
+        $dir = self::photosDir($this->product_id);
+        \Storage::disk('public')->delete("{$dir}/{$fileName}");
+    }
+
     public static function deleteFiles(int $productId, array $files)
     {
         /** @var UploadedFile $file */
