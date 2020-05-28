@@ -42,7 +42,7 @@ class ProductPhotosTableSeeder extends Seeder
         \File::deleteDirectory(storage_path($path), true);
     }
 
-    private function createPhotoDir(Product $product)
+    private function createPhotoDir(Product $product)//cria a pasta para as fotos
     {
         $path = ProductPhoto::photosPath($product->id);
         \File::makeDirectory($path, 0777, true);

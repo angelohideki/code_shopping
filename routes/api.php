@@ -20,7 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api', 'as' => 'api.' ], function (){
     Route::resource('categories','CategoryController',['except' => ['create','edit']]);
     Route::resource('products','ProductController',['except' => ['create','edit']]);
+    //POST products/1/categories
+    //PUT products/1/categories - adicionar e remover -> [1,3] [10 categorias]
+    //GET products/1/categories
+    //DELETE products/1/categories
+    //DELETE products/1/categories/10
     Route::resource('products.categories','ProductCategoryController', ['only' => ['index', 'store', 'destroy']]);
+    //Route::resource('products.photos','ProductPhotoController', ['only' => ['index','store','destroy']]);
     Route::resource('products.photos','ProductPhotoController', ['except' => ['create','edit']]);
     Route::resource('inputs','ProductInputController', ['only' => ['index', 'store', 'show']]);
     Route::resource('outputs','ProductOutputController', ['only' => ['index', 'store', 'show']]);
