@@ -13,7 +13,7 @@ class Product extends Model
     use Sluggable, SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name','price','description','active'];
+    protected $fillable = ['name', 'description', 'price', 'active'];
 
     public function sluggable(): array
     {

@@ -18,8 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api', 'as' => 'api.' ], function (){
-    Route::resource('categories','CategoryController',['except' => ['create','edit']]);
+    Route::patch('products/{product}/restore','ProductController@restore');
     Route::resource('products','ProductController',['except' => ['create','edit']]);
+    Route::resource('categories','CategoryController',['except' => ['create','edit']]);
     //POST products/1/categories
     //PUT products/1/categories - adicionar e remover -> [1,3] [10 categorias]
     //GET products/1/categories

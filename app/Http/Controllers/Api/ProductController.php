@@ -25,12 +25,12 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
         $product->refresh();
-        return ProductResource::collection($product);
+        return new ProductResource($product);
     }
 
     public function show(Product $product)
     {
-        return ProductResource::collection($product);
+        return new ProductResource($product);
     }
 
     public function update(ProductRequest $request, Product $product)
@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->fill($request->all());
         $product->save();
 
-        return ProductResource::collection($product);
+        return new ProductResource($product);
     }
 
     public function destroy(Product $product)
@@ -46,6 +46,12 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json([], 204);
+    }
+
+    public function restore(Product $product)
+    {
+        $product->restore();
+        return response()->json([],204);
     }
 
     private function onlyTrashedIfRequested(Request $request, Builder $query)
