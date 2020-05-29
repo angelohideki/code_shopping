@@ -16,10 +16,10 @@ class ProductOutputsTableSeeder extends Seeder
         $products = Product::all();
         factory(ProductOutput::class,200)
             ->make()
-            ->each(function ($input) use($products){
+            ->each(function ($output) use($products){
                 $product = $products->random();
-                $input->product_id = $product->id;
-                $input->save();
+                $output->product_id = $product->id;
+                $output->save();
             });
     }
 }
