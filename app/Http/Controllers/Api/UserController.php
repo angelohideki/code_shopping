@@ -24,6 +24,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create($request->all());
+        //disparar - usuraio criado - ouvinte - fazer tarefa
         return new UserResource($user);
     }
 
