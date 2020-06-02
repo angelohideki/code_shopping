@@ -22,4 +22,13 @@ export class LoginComponent implements OnInit {
     }, 3000)
   }
 
+  meclicou($event)
+  {
+    console.log($event);
+  }
+
+  digitou($event)
+  {
+    console.log($event);
+  }
 }
