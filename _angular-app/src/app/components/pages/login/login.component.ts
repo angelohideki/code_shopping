@@ -7,28 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  email = 'admin@user.com';
-  obj = {
-    email: 'outroemail.com',
-    array: [1]
-  };
-  //property binding
-  //simbolo [] - o TS reflete alterações no template  Dados ----> template
-  constructor() { }
+  credentials = {
+     email : '',
+     password : ''
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.email = 'qualquer coisa';
-    }, 3000)
+
   }
 
-  meclicou($event)
-  {
-    console.log($event);
-  }
-
-  digitou($event)
-  {
-    console.log($event);
-  }
 }
+
