@@ -18,11 +18,13 @@ export class CategoryListComponent implements OnInit {
     const  token = window.localStorage.getItem('token');
     this.http.get<{data:Array<{id: number, name: string, active:boolean, created_at:{date:string}}>}>('http://localhost:8000/api/categories', {
        headers:{
-         //'Authorization' : 'Bearer ' + token
          'Authorization' : `Bearer ${token}`
        }
     })
-      .subscribe(response => this.categories = response.data);
+      .subscribe(response => {
+        response.data[0].active = false;
+        this.categories = response.data
+      });
   }
 
 }
