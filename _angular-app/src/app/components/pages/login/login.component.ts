@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
      password : 'secret'
   }
 
-  constructor(private http: HttpClient) { //Injeção de dependencia automatica
+  constructor(private http: HttpClient, private  router: Router) { //Injeção de dependencia automatica
   }
 
   ngOnInit(): void {
@@ -23,14 +24,15 @@ export class LoginComponent implements OnInit {
   submit(){
     this.http.post<any>('http://localhost:8000/api/login', this.credentials)
       .subscribe((data) => {
+          this.router.navigate(['categories/list']);
           const token = data.token;
-          this.http.get('http://localhost:8000/api/categories', {
-             headers:{
-               //'Authorization' : 'Bearer ' + token
-               'Authorization' : `Bearer ${token}`
-             }
-        })
-            .subscribe(data => console.log(data));
+            //this.http.get('http://localhost:8000/api/categories', {
+            //   headers:{
+            //     //'Authorization' : 'Bearer ' + token
+            //     'Authorization' : `Bearer ${token}`
+            //   }
+            //})
+            //  .subscribe(data => console.log(data));
       });
     return false;
   }
