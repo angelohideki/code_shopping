@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CategoryListComponent implements OnInit {
 
-  categories = [];
+  categories: Array<{id: number, name: string, active:boolean, created_at:{date:string}}> = [];
 
   constructor(private  http: HttpClient) {
 
@@ -16,13 +16,13 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void {
     const  token = window.localStorage.getItem('token');
-    this.http.get<Array<any>>('http://localhost:8000/api/categories', {
+    this.http.get<{data:Array<{id: number, name: string, active:boolean, created_at:{date:string}}>}>('http://localhost:8000/api/categories', {
        headers:{
          //'Authorization' : 'Bearer ' + token
          'Authorization' : `Bearer ${token}`
        }
     })
-      .subscribe(data => this.categories = data);
+      .subscribe(response => this.categories = response.data);
   }
 
 }
