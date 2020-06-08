@@ -58,5 +58,10 @@ export class CategoryListComponent implements OnInit {
     this.modal.show();
   }
 
+  hideModal($event: Event){
+    //Fazer algo quando o modal foi fechado
+    console.log($event);
+  }
+
 }
 

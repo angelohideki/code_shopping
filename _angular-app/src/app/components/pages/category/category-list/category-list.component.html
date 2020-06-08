@@ -30,10 +30,10 @@
   <button type="button" (click)="showModal()">Abrir Modal</button>
 </div>
 <!-- Modal -->
-<modal>
-  <div modal-title>
+<modal (onHide)="hideModal($event)">
+  <h1 modal-title>
     Titulo
-  </div>
+  </h1>
   <div modal-body>
     Corpo
   </div>
