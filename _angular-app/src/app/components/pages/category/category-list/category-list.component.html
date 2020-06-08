@@ -8,6 +8,7 @@
         </td>
       </tr>
       <tr>
+
         <th style="width: 5%">ID</th>
         <th style="width: 65%">Nome</th>
         <th style="width: 5%">Ativa?</th>
@@ -28,4 +29,4 @@
     </tbody>
   </table>
 </div>
-<category-new-modal></category-new-modal>
+<category-new-modal (onSuccess)="onInsertSuccess($event)" (onError)="onInsertError($event)"></category-new-modal>

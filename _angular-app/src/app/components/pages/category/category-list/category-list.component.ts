@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
 
 declare let $;
@@ -40,5 +40,13 @@ export class CategoryListComponent implements OnInit {
       this.categoryNewModal.showModal();
   }
 
+  onInsertSuccess($event: any) {
+      console.log($event);
+      this.getCategories();
+  }
+
+  onInsertError($event: HttpErrorResponse) {
+      console.log($event);
+  }
 }
 
