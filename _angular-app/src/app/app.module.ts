@@ -10,6 +10,7 @@ import { CategoryListComponent } from './components/pages/category/category-list
 import { ComponentsComponent } from './components/components.component';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { ModalComponent } from './components/bootstrap/modal/modal.component';
+import { CategoryNewModalComponent } from './components/pages/category/category-new-modal/category-new-modal.component';
 
 const routes: Routes = [
     {
@@ -32,7 +33,8 @@ const routes: Routes = [
     CategoryListComponent,
     ComponentsComponent,
     AlertErrorComponent,
-    ModalComponent
+    ModalComponent,
+    CategoryNewModalComponent
   ],
     imports: [
         BrowserModule,

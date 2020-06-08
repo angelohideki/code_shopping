@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <td colspan="5">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exemploModal">Nova categoria</button>
+          <button class="btn btn-primary" (click)="showModal()">Nova categoria</button>
         </td>
       </tr>
       <tr>
@@ -27,20 +27,20 @@
       </tr>
     </tbody>
   </table>
-  <button type="button" (click)="showModal()">Abrir Modal</button>
 </div>
-<!-- Modal -->
-<modal (onHide)="hideModal($event)">
-  <h1 modal-title>
-    Titulo
-  </h1>
-  <div modal-body>
-    Corpo
-  </div>
-  <div modal-footer>
-    Footer
-  </div>
-</modal>
-<form (submit)="submit()">
 
+<form (submit)="submit()">
+  <modal (onHide)="hideModal($event)">
+    <h5 modal-title>Nova Categoria</h5>
+    <div modal-body>
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="category.name">
+      </div>
+    </div>
+    <div modal-footer>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-primary">Incluir</button>
+    </div>
+  </modal>
 </form>
