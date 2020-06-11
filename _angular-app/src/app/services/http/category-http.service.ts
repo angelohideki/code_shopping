@@ -9,13 +9,15 @@ import {Category} from '../../model';
 })
 export class CategoryHttpService {
 
+  private baseUrl = 'http://localhost:8000/api/categories';
+
   constructor(private http:HttpClient) { }
 
   list(): Observable<{ data: Array<Category> }>{
     const  token = window.localStorage.getItem('token');
     return this.http
       .get<{ data: Array<Category> }>
-      ('http://localhost:8000/api/categories', {
+      (this.baseUrl, {
           headers:{
             'Authorization' : `Bearer ${token}`
           }
@@ -25,7 +27,7 @@ export class CategoryHttpService {
     const  token = window.localStorage.getItem('token');
     return this.http
       .get<{ data: Category }>
-      (`http://localhost:8000/api/categories/${id}`, {
+      (`${this.baseUrl}/${id}`, {
           headers:{
             'Authorization' : `Bearer ${token}`
           }
@@ -35,8 +37,17 @@ export class CategoryHttpService {
       );
   }
 
-  create(){
-
+  create(data: Category): Observable<Category>{
+    const  token = window.localStorage.getItem('token');
+    return this.http
+               .post<{ data: Category }>(this.baseUrl, data,{
+      headers:{
+        'Authorization' : `Bearer ${token}`
+      }
+    })
+      .pipe(
+        map(response => response.data)
+      );
   }
 
   update(){
