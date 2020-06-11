@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
+import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 @Component({
   selector: 'category-delete-modal',
@@ -18,7 +19,7 @@ export class CategoryDeleteModalComponent implements OnInit {
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private  http: HttpClient) {
+  constructor(private  http: HttpClient, public categoryHttp: CategoryHttpService) {
 
   }
 
@@ -38,7 +39,7 @@ export class CategoryDeleteModalComponent implements OnInit {
           .subscribe((response) => this.category = response.data)
       }
   }
-  
+
   destroy(){
     const  token = window.localStorage.getItem('token');
     this.http.delete(`http://localhost:8000/api/categories/${this._categoryId}`, {
