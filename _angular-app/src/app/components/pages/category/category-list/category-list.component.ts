@@ -5,6 +5,8 @@ import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-m
 import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 import {Category} from "../../../../model";
+//import PNotify from 'pnotify/dist/es/PNotify';
+//import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
 
 declare let $;
 
@@ -84,5 +86,9 @@ export class CategoryListComponent implements OnInit {
     console.log($event);
   }
 
+  showNotify() {
+      //PNotifyButtons;
+      //alert('Hello world!!', 'success');
+  }
 }
 
