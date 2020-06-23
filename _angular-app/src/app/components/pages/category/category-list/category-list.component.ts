@@ -18,7 +18,7 @@ declare let $;
 export class CategoryListComponent implements OnInit {
 
   categories: Array<Category> = [];
-
+  page = 1;
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
 
@@ -31,9 +31,9 @@ export class CategoryListComponent implements OnInit {
   categoryId: number;
 
   constructor(private categoryHttp: CategoryHttpService,
-              protected categoryInsertService: CategoryInsertService,
-              protected categoryEditService: CategoryEditService,
-              protected categoryDeleteService: CategoryDeleteService) {
+              public categoryInsertService: CategoryInsertService,
+              public categoryEditService: CategoryEditService,
+              public categoryDeleteService: CategoryDeleteService) {
       this.categoryInsertService.categoryListComponent = this;
       this.categoryEditService.categoryListComponent = this;
       this.categoryDeleteService.categoryListComponent = this;
