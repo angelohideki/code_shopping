@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import PNotify from 'pnotify/dist/es/PNotify';
-import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
+//import PNotify from 'pnotify/dist/es/PNotify';
+//import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,13 @@ export class NotifyMessageService {
   }
 
   private alert(text: string, type: Types) {
-      this.pnotify.alert({text, type});
+      //this.pnotify.alert({text, type});
   }
 
-  private get pnotify(){
-    PNotifyButtons;
-    return PNotify;
-  }
+  //private get pnotify(){
+    //PNotifyButtons;
+    //return PNotify;
+  //}
 
 }
   enum Types {

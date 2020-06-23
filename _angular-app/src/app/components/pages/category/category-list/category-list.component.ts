@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {HttpErrorResponse} from "@angular/common/http";
 import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
 import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-modal.component";
 import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 import {Category} from "../../../../model";
-import {NotifyMessageService} from "../../../../services/notify-message.service";
+import {CategoryInsertService} from "./category-insert.service";
+import {CategoryEditService} from "./category-edit.service";
+import {CategoryDeleteService} from "./category-delete.service";
 
 declare let $;
 
@@ -29,8 +30,13 @@ export class CategoryListComponent implements OnInit {
 
   categoryId: number;
 
-  constructor(public categoryHttp: CategoryHttpService, private notifyMessage: NotifyMessageService) {
-
+  constructor(private categoryHttp: CategoryHttpService,
+              protected categoryInsertService: CategoryInsertService,
+              protected categoryEditService: CategoryEditService,
+              protected categoryDeleteService: CategoryDeleteService) {
+      this.categoryInsertService.categoryListComponent = this;
+      this.categoryEditService.categoryListComponent = this;
+      this.categoryDeleteService.categoryListComponent = this;
   }
 
   ngOnInit(): void {
@@ -42,48 +48,6 @@ export class CategoryListComponent implements OnInit {
       .subscribe(response => {
         this.categories = response.data
       })
-  }
-
-  showModalInsert() {
-    this.categoryNewModal.showModal();
-  }
-
-  showModalEdit(categoryId: number) {
-    this.categoryId = categoryId;
-    this.categoryEditModal.showModal();
-  }
-
-  showModalDelete(categoryId: number) {
-    this.categoryId = categoryId;
-    this.categoryDeleteModal.showModal();
-  }
-
-  onInsertSuccess($event: any) {
-    this.notifyMessage.success('Categoria cadastrada com sucesso.');
-    console.log($event);
-    this.getCategories();
-  }
-
-  onInsertError($event: HttpErrorResponse) {
-    console.log($event);
-  }
-
-  onEditSuccess($event: any) {
-    console.log($event);
-    this.getCategories();
-  }
-
-  onEditError($event: any) {
-    console.log($event);
-  }
-
-  onDeleteSuccess($event: any) {
-    console.log($event);
-    this.getCategories();
-  }
-
-  onDeleteError($event: any) {
-    this.notifyMessage.error('Não foi possível excluir a categoria! Verifique se a mesma não está relacionada com produtos.')
   }
 
 }
