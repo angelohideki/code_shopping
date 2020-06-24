@@ -24,6 +24,7 @@
     "jquery": "^3.5.0",
     "material-design-icons": "^3.0.1",
     "ngx-pagination": "^3.1.1",
+    "pace": "github:HubSpot/pace#v1.0.2",
     "pnotify": "^3.2.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
