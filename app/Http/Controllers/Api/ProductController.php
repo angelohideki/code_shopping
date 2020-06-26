@@ -20,7 +20,7 @@ class ProductController extends Controller
         //return Product::all();
         $query = Product::query();
         $query = $this->onlyTrashedIfRequested($request,$query);
-        $products =  $query->paginate(10);
+        $products =  $query->paginate(5);
         return ProductResource::collection($products);
     }
 
