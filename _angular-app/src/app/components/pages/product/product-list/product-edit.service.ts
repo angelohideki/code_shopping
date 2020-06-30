@@ -28,6 +28,6 @@ export class ProductEditService {
 
   onEditError($event: any) {
     console.log($event);
-  }
+  }t
 
 }

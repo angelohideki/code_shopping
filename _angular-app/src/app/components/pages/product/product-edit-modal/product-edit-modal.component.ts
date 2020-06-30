@@ -14,7 +14,7 @@ export class ProductEditModalComponent implements OnInit {
   product: Product = {
     name: '',
     description: '',
-    price: 0.0,
+    price: 0,
     active: true
   };
 
