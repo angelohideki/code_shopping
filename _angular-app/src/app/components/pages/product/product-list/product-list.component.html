@@ -10,10 +10,10 @@
     <tr>
 
       <th style="width: 5%">ID</th>
-      <th style="width: 55%">Nome</th>
+      <th style="width: 15%">Nome</th>
       <th style="width: 10%">Preço</th>
       <th style="width: 10%">Ativa?</th>
-      <th style="width: 10%">Criado Em</th>
+      <th style="width: 20%">Criado Em</th>
       <th style="width: 10%">Acões</th>
     </tr>
     </thead>
@@ -29,6 +29,9 @@
       <td>
         <a href="javascript:void(0)" (click)="productEditService.showModalEdit(product.id)"> <i class="fas fa-edit"></i></a> |
         <a href="javascript:void(0)" (click)="productDeleteService.showModalDelete(product.id)"> <i class="fas fa-trash-alt"></i></a>
+        <a [routerLink]="['/products',product.id,'categories','list']">
+            Categorias
+        </a>
       </td>
     </tr>
     </tbody>
