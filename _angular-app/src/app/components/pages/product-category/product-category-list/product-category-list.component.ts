@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Product, ProductCategory} from "../../../../model";
+import {Category, Product, ProductCategory} from "../../../../model";
 import {ProductHttpService} from "../../../../services/http/product-http.service";
 import {ProductCategoryHttpService} from "../../../../services/http/product-category-http.service";
+import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 @Component({
   selector: 'app-product-category-list',
@@ -14,16 +15,30 @@ export class ProductCategoryListComponent implements OnInit {
   productId: number;
   product: Product = null;
   productCategory: ProductCategory = null;
+  categories: Category[] = [];
+  categoriesId:number[] = [];
   constructor(private route: ActivatedRoute,
               private productHttp: ProductHttpService,
-              private productCategoryHttp: ProductCategoryHttpService) { }
+              private productCategoryHttp: ProductCategoryHttpService,
+              private categoryHttp: CategoryHttpService) { }
 
   ngOnInit() {
+      this.getCategories();
       this.route.params.subscribe(params => {
           this.productId = params.product;
           this.getProduct();
           this.getProductCategory();
       });
+  }
+
+  change(){
+    console.log(this.categoriesId)
+  }
+  getCategories(){
+      this.categoryHttp.list(1)
+        .subscribe(response => {
+            this.categories = response.data;
+        })
   }
 
   getProduct(){
