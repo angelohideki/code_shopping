@@ -2,8 +2,13 @@ import {Observable} from "rxjs/internal/Observable";
 import {HttpParams} from "@angular/common/http";
 import {map} from "rxjs/operators";
 
+export interface  SearchParams {
+  page?: number;
+  all?: any;
+}
+
 export interface HttpResource<T> {
-  list(page: number): Observable<{ data: Array<T>, meta: any }>;
+  list(searchParams: SearchParams): Observable<{ data: Array<T>, meta: any }>;
 
   get(id: number): Observable<T>;
 
