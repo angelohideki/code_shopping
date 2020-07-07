@@ -30,7 +30,7 @@ export class ProductCategoryNewComponent implements OnInit {
   }
 
   getCategories(){
-    this.categoryHttp.list({all: 1})
+    this.categoryHttp.list({all: true})
       .subscribe(response => {
         this.categories = response.data;
       })
