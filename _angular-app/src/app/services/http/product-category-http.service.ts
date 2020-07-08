@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {ProductCategory} from "../../model";
 import {HttpClient} from "@angular/common/http";
 import {map} from 'rxjs/operators';
+import {AuthService} from "../auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ import {map} from 'rxjs/operators';
 export class ProductCategoryHttpService {
   private baseApi = `http://localhost:8000/api`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   list(productId: number): Observable<ProductCategory>{
-      const token = window.localStorage.getItem('token');
+      const token = this.authService.getToken();
       return  this.http
         .get<({ data: ProductCategory })>
         (this.getBaseUrl(productId), {
@@ -27,7 +28,7 @@ export class ProductCategoryHttpService {
   }
 
   create(productId: number, categoriesId: number[]): Observable<ProductCategory>{
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return  this.http
       .post<{ data: ProductCategory }>
       (this.getBaseUrl(productId), {categories: categoriesId},{
